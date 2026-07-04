@@ -25,6 +25,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setLoading(true);
 
       const result = await signInWithPopup(auth, googleProvider);
+      console.log(result);
 
       const firebaseUser = result.user;
 
