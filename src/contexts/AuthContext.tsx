@@ -1,3 +1,11 @@
 import { createContext } from "react";
+import type { IUser } from "../types/User";
 
-export const AuthContext = createContext(null);
+export interface AuthContextData {
+  user: IUser | null;
+  loading: boolean;
+  signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
+}
+
+export const AuthContext = createContext({} as AuthContextData);
