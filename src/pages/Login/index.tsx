@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, CheckCircle2 } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 import { useAuth } from "../../hooks/useAuth";
 
@@ -46,25 +46,7 @@ export default function Login() {
             sua produtividade.
           </p>
 
-          <div className="space-y-4">
-            {[
-              "Kanban moderno estilo Trello",
-              "Sugestões inteligentes de tarefas",
-              "Organização automática de backlog",
-              "Insights de produtividade",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-3 text-slate-300"
-              >
-                <CheckCircle2
-                  size={20}
-                  className="text-emerald-400"
-                />
-                {item}
-              </div>
-            ))}
-          </div>
+          
         </div>
 
         {/* Card Login */}
@@ -138,14 +120,17 @@ export default function Login() {
                 : "Entrar com Google"}
             </button>
 
-            <div className="mt-6 text-center text-sm text-slate-500">
-              Continue exatamente de onde parou.
-            </div>
+            
           </div>
 
         </div>
 
       </div>
+      
     </div>
+    
+    
   );
+  
 }
+

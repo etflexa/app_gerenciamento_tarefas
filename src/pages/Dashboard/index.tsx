@@ -1,7 +1,7 @@
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      {/* Header */}
+     
       <header className="h-16 border-b border-slate-800 flex items-center justify-between px-6">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-linear-to-r from-blue-500 to-violet-600" />
@@ -21,7 +21,7 @@ export default function Dashboard() {
       </header>
 
       <div className="flex">
-        {/* Sidebar */}
+        
         <aside className="w-64 border-r border-slate-800 p-4">
           <nav className="space-y-2">
             <MenuItem label="🏠 Dashboard" />
@@ -33,7 +33,7 @@ export default function Dashboard() {
           </nav>
         </aside>
 
-        {/* Conteúdo */}
+        
         <main className="flex-1 p-8">
           <h1 className="text-3xl font-bold">
             Olá, Eduardo 👋
@@ -43,7 +43,7 @@ export default function Dashboard() {
             Aqui está um resumo das suas atividades.
           </p>
 
-          {/* Cards */}
+          
           <div className="grid gap-6 md:grid-cols-3">
             <StatCard
               title="Tarefas Ativas"
@@ -61,7 +61,7 @@ export default function Dashboard() {
             />
           </div>
 
-          {/* IA */}
+          
           <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-6">
             <h2 className="mb-4 text-xl font-semibold">
               ✨ Assistente IA
@@ -75,7 +75,7 @@ export default function Dashboard() {
           </section>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            {/* Projetos */}
+            
             <section className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
               <h2 className="mb-4 text-xl font-semibold">
                 Projetos Recentes
@@ -99,7 +99,7 @@ export default function Dashboard() {
               </div>
             </section>
 
-            {/* Kanban */}
+            
             <section className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
               <h2 className="mb-4 text-xl font-semibold">
                 Kanban Resumido
@@ -134,7 +134,7 @@ export default function Dashboard() {
   );
 }
 
-/* ---------------- COMPONENTES ---------------- */
+
 
 interface MenuItemProps {
   label: string;
