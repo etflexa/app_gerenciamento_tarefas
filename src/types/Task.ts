@@ -29,3 +29,8 @@ export interface ITask {
 
   updatedAt: string;
 }
+
+export type CreateTaskDTO = Omit<
+  ITask,
+  "id" | "createdAt" | "updatedAt"
+>;
