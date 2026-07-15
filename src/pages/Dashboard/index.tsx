@@ -1,4 +1,9 @@
+import { useState } from "react";
+import TaskModal from "../../components/TaskModel";
+
 export default function Dashboard() {
+
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   return (
     <div className="min-h-screen bg-slate-950 text-white">
      
@@ -35,13 +40,26 @@ export default function Dashboard() {
 
         
         <main className="flex-1 p-8">
-          <h1 className="text-3xl font-bold">
-            Olá, Eduardo 👋
-          </h1>
+          <div className="mb-8 flex items-center justify-between">
 
-          <p className="mt-2 mb-8 text-slate-400">
-            Aqui está um resumo das suas atividades.
-          </p>
+            <div>
+              <h1 className="text-3xl font-bold">
+                Olá, Eduardo 👋
+              </h1>
+
+              <p className="mt-2 text-slate-400">
+                Aqui está um resumo das suas atividades.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setIsTaskModalOpen(true)}
+              className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
+            >
+              + Nova tarefa
+            </button>
+
+          </div>
 
           
           <div className="grid gap-6 md:grid-cols-3">
@@ -130,6 +148,10 @@ export default function Dashboard() {
           </div>
         </main>
       </div>
+      <TaskModal
+        open={isTaskModalOpen}
+        onClose={() => setIsTaskModalOpen(false)}
+      />
     </div>
   );
 }
