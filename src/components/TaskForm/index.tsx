@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { taskService } from "../../services/taskService";
 
 export default function TaskForm() {
   const [formData, setFormData] = useState({
@@ -8,6 +10,7 @@ export default function TaskForm() {
     priority: "medium",
     dueDate: "",
   });
+  const { user } = useAuth();
 
   function handleChange(
     event: React.ChangeEvent<
@@ -22,13 +25,35 @@ export default function TaskForm() {
     }));
   }
 
-  async function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
-    event.preventDefault();
+async function handleSubmit(
+  event: React.FormEvent<HTMLFormElement>
+) {
+  event.preventDefault();
 
-    console.log(formData);
+  if (!user) {
+    return;
   }
+
+  try {
+    await taskService.createTask({
+      title: formData.title,
+      description: formData.description,
+      category: formData.category,
+      priority: formData.priority as
+        | "low"
+        | "medium"
+        | "high",
+      status: "todo",
+      dueDate: formData.dueDate,
+      userId: user.uid,
+    });
+
+    console.log("Tarefa criada com sucesso");
+
+  } catch (error) {
+    console.error("Erro ao criar tarefa:", error);
+  }
+}
 
   return (
     <form
@@ -86,7 +111,7 @@ export default function TaskForm() {
             name="priority"
             value={formData.priority}
             onChange={handleChange}
-            className="w-full rounded-lg border p-3"
+            className="w-full rounded-lg border p-3 bg-slate-700"
           >
             <option value="low">Baixa</option>
             <option value="medium">Média</option>
