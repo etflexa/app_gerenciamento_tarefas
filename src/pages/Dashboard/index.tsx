@@ -9,6 +9,9 @@ export default function Dashboard() {
 
   const { user } = useAuth();
 
+  console.log(user);
+console.log(user?.photoURL);
+
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -46,7 +49,11 @@ export default function Dashboard() {
           className="w-80 rounded-xl bg-slate-900 border border-slate-700 px-4 py-2 outline-none"
         />
 
-        <div className="h-10 w-10 rounded-full bg-slate-700" />
+        <img
+          src={user?.photoURL ?? ""}
+          alt="Avatar"
+          className="h-10 w-10 rounded-full object-cover"
+        />
       </header>
 
       <div className="flex">
