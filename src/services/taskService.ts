@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  onSnapshot,
+  query,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -8,7 +10,39 @@ import { db } from "../firebase/firebase";
 
 import type { CreateTaskDTO  } from "../types/Task";
 
+import type { ITask } from "../types/Task";
+
+
 export const taskService = {
+
+  getTasks(
+  userId: string,
+  callback: (tasks: ITask[]) => void
+) {
+
+  const tasksRef = collection(
+    db,
+    "users",
+    userId,
+    "tasks"
+  );
+
+  const q = query(tasksRef);
+
+  return onSnapshot(q, (snapshot) => {
+
+    const tasks: ITask[] = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...(doc.data() as Omit<
+        ITask,
+        "id"
+      >),
+    }));
+
+    callback(tasks);
+  });
+},
+
   async createTask(task: CreateTaskDTO) {
   try {
     
@@ -37,4 +71,6 @@ export const taskService = {
     throw error;
   }
 }
+  
 };
+
