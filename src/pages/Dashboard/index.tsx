@@ -3,7 +3,7 @@ import TaskModal from "../../components/TaskModel";
 import { useAuth } from "../../hooks/useAuth";
 import { taskService } from "../../services/taskService";
 import type { ITask } from "../../types/Task";
-
+import TaskCard from "../../components/tasks/TaskCard";
 
 export default function Dashboard() {
 
@@ -65,43 +65,11 @@ export default function Dashboard() {
         
         <main className="flex-1 p-8">
           <div className="mb-8 flex items-center justify-between">
-            <section className="mb-8 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-              <h2 className="mb-4 text-xl font-semibold">
-                Tarefas carregadas do Firestore
-              </h2>
-
-              <div className="grid gap-4">
-  {tasks.map((task) => (
-    <div
-      key={task.id}
-      className="rounded-xl border border-slate-700 bg-slate-800 p-4"
-    >
-      <h3 className="font-bold text-lg">
-        {task.title}
-      </h3>
-
-      <p className="mt-2 text-slate-400">
-        {task.description}
-      </p>
-
-      <div className="mt-4 flex gap-2">
-        <span className="rounded bg-blue-600 px-2 py-1 text-xs">
-          {task.category}
-        </span>
-
-        <span className="rounded bg-orange-600 px-2 py-1 text-xs">
-          {task.priority}
-        </span>
-      </div>
-    </div>
-  ))}
-</div>
-
-            </section>
+            
 
             <div>
               <h1 className="text-3xl font-bold">
-                Olá, Eduardo 👋
+                Olá, {user?.displayName ?? "usuário"}
               </h1>
 
               <p className="mt-2 text-slate-400">
@@ -135,6 +103,26 @@ export default function Dashboard() {
               value="89%"
             />
           </div>
+
+          <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+
+            <h2 className="mb-4 text-xl font-semibold">
+              Minhas Tarefas
+            </h2>
+
+            <div className="max-h-[500px] overflow-y-auto space-y-4 pr-2">
+
+              {tasks.map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                />
+              ))}
+
+            </div>
+
+          </section>
+
 
           
           <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-6">
