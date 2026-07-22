@@ -9,9 +9,6 @@ export default function Dashboard() {
 
   const { user } = useAuth();
 
-  console.log(user);
-console.log(user?.photoURL);
-
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -61,10 +58,8 @@ console.log(user?.photoURL);
         <aside className="w-64 border-r border-slate-800 p-4">
           <nav className="space-y-2">
             <MenuItem label="🏠 Dashboard" />
-            <MenuItem label="📂 Projetos" />
             <MenuItem label="✅ Tarefas" />
             <MenuItem label="🤖 IA" />
-            <MenuItem label="👥 Equipe" />
             <MenuItem label="⚙️ Configurações" />
           </nav>
         </aside>
@@ -76,7 +71,7 @@ console.log(user?.photoURL);
 
             <div>
               <h1 className="text-3xl font-bold">
-                Olá, {user?.displayName ?? "usuário"}
+                Olá, {user?.displayName ?? "usuário"} 👋
               </h1>
 
               <p className="mt-2 text-slate-400">
